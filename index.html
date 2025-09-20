@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS & JavaScript Animations</title>
+
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f9;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    section {
+      margin: 40px 0;
+    }
+
+    /* Part 1: CSS Transitions & Animations */
+    .fancy-btn {
+      background: #6200ea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .fancy-btn:hover {
+      background: #3700b3;
+      transform: scale(1.1);
+    }
+
+    .animated-box {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      background: coral;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); background: coral; }
+      50% { transform: scale(1.2); background: orange; }
+      100% { transform: scale(1); background: coral; }
+    }
+
+    /* Part 3: Box for JS Animation */
+    .js-box {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      background: teal;
+      border-radius: 10px;
+      transition: transform 0.5s, background 0.5s;
+    }
+
+    .js-box.animate {
+      transform: rotate(360deg) scale(1.2);
+      background: limegreen;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 CSS & JavaScript Interactive Demo</h1>
+
+  <!-- Part 1: CSS Animations -->
+  <section>
+    <h2>Part 1: CSS Animations</h2>
+    <button class="fancy-btn">Hover Me</button>
+    <div class="animated-box"></div>
+  </section>
+
+  <!-- Part 2: JavaScript Functions -->
+  <section>
+    <h2>Part 2: JavaScript Functions</h2>
+    <p>Enter a number to double:</p>
+    <input type="number" id="numInput">
+    <button onclick="showDouble()">Calculate</button>
+    <p id="result"></p>
+  </section>
+
+  <!-- Part 3: CSS + JavaScript Integration -->
+  <section>
+    <h2>Part 3: Combined Magic</h2>
+    <button id="animateBtn">Animate the Box!</button>
+    <div class="js-box" id="jsBox"></div>
+  </section>
+
+  <script>
+    // ====================
+    // Part 2: Functions
+    // ====================
+
+    // Global variable
+    let multiplier = 2;
+
+    // Function with parameters & return value
+    function doubleNumber(num) {
+      // Local scope variable
+      let result = num * multiplier;
+      return result;
+    }
+
+    // Function to update the DOM
+    function showDouble() {
+      let input = document.getElementById("numInput").value;
+      let doubled = doubleNumber(input); // function reuse
+      document.getElementById("result").textContent = 
+        `Result: ${doubled}`;
+    }
+
+    // ====================
+    // Part 3: Combine CSS + JS
+    // ====================
+    const animateBtn = document.getElementById("animateBtn");
+    const jsBox = document.getElementById("jsBox");
+
+    animateBtn.addEventListener("click", () => {
+      jsBox.classList.toggle("animate"); // Toggle animation class
+    });
+  </script>
+</body>
+</html>
